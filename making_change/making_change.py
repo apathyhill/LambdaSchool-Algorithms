@@ -3,7 +3,13 @@
 import sys
 
 def making_change(amount, denominations):
-  pass 
+  ways = 0
+  if amount == 0:
+    return 1
+  for i, d in enumerate(denominations):
+    if d <= amount:
+      ways += making_change(amount-d, denominations[:i+1])
+  return ways 
 
 
 if __name__ == "__main__":

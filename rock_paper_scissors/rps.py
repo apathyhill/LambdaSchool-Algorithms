@@ -3,7 +3,13 @@
 import sys
 
 def rock_paper_scissors(n):
-  pass 
+  choices = ["rock", "paper", "scissors"]
+  arr = []
+  if n <= 0:
+    return [[]]
+  for i in choices:
+    arr += [[i]+j for j in rock_paper_scissors(n-1)]
+  return arr
 
 
 if __name__ == "__main__":
