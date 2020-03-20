@@ -1,7 +1,10 @@
+import os
 import sys
 import unittest
 from collections import namedtuple
 from knapsack import knapsack_solver
+
+os.chdir(os.path.dirname(__file__))
 
 Item = namedtuple('Item', ['index', 'size', 'value'])
 

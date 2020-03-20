@@ -6,7 +6,23 @@ from collections import namedtuple
 Item = namedtuple('Item', ['index', 'size', 'value'])
 
 def knapsack_solver(items, capacity):
-  pass
+  L = len(items)
+  cache = [[{"Value":0, "Chosen":[]} for i in range(capacity+1)] for j in range(L+1)] 
+  for i in range(L+1): 
+    for j in range(capacity+1): 
+      if i == 0 or j == 0:
+        pass
+      elif items[i-1].size <= j:
+        new_val = cache[i-1][j-items[i-1].size]["Value"] + items[i-1].value
+        new_chosen = cache[i-1][j-items[i-1].size]["Chosen"] + [items[i-1].index]
+        if new_val > cache[i-1][j]["Value"]:
+          cache[i][j]["Value"] = new_val
+          cache[i][j]["Chosen"] = new_chosen
+        else:
+          cache[i][j] = cache[i-1][j]
+      else: 
+        cache[i][j] = cache[i-1][j]
+  return cache[L][capacity]
   
 
 if __name__ == '__main__':
